@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KJA Красноярск Сегодня</string>
+    <string name="today">KJA Красноярск Сегодня</string>
+    <string name="yesterday">KJA Красноярск Вчера</string>
+    <string name="tomorrow">KJA Красноярск Завтра</string>
+    <string name="depart">вылет</string>
+</resources>
