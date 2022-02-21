@@ -38,7 +38,6 @@ class DepartAdapter(var myContext: Context?) : RecyclerView.Adapter<DepartAdapte
                             Log.d("MyLog",departListArray[x].company + x.toString())
                         }
                     }
-
                     resultList
                 }
                 val filterResults = FilterResults()
@@ -48,10 +47,6 @@ class DepartAdapter(var myContext: Context?) : RecyclerView.Adapter<DepartAdapte
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 filterDepartListArray = results?.values as MutableList<FlightData>
-                for(y in 0 until filterDepartListArray.size) {
-                    Log.d("MyLog",filterDepartListArray[y].company + y.toString())
-
-                }
                 notifyDataSetChanged()
             }
 
@@ -64,44 +59,27 @@ class DepartAdapter(var myContext: Context?) : RecyclerView.Adapter<DepartAdapte
         context = parent.context
         return sch
     }
-
-    override fun onBindViewHolder(holder: DepartViewHolder, position: Int) {
-        holder.viewBinding.tvPlanTime.text = filterDepartListArray[position].plan_time
-        holder.viewBinding.tvFactTime.text = filterDepartListArray[position].fact_time
-        holder.viewBinding.tvPurpose.text = filterDepartListArray[position].purpose
-        if (filterDepartListArray[position].status == "отменен" || filterDepartListArray[position].status == "задержан") {
-            holder.viewBinding.tvStatus.setTextColor(ContextCompat.getColor(myContext!!,
-                android.R.color.holo_red_dark))
-        } else {
-            holder.viewBinding.tvStatus.setTextColor(ContextCompat.getColor(myContext!!,
-                android.R.color.holo_green_dark))
-        }
-        holder.viewBinding.tvStatus.text = filterDepartListArray[position].status
-        holder.viewBinding.tvAirplane.text = filterDepartListArray[position].airplane
-        holder.viewBinding.tvFlight.text = filterDepartListArray[position].flight
-        holder.viewBinding.tvCompany.text = filterDepartListArray[position].company
-    }
+    override fun onBindViewHolder(holder: DepartViewHolder, position: Int) { holder.bind(position) }
 
     override fun getItemCount(): Int = filterDepartListArray.size
 
     inner class DepartViewHolder(var viewBinding: FlightItemBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
-
-//        fun bind(index: Int) {
-//            viewBinding.tvPlanTime.text = departListArray[index].plan_time
-//            viewBinding.tvFactTime.text = departListArray[index].fact_time
-//            viewBinding.tvPurpose.text = departListArray[index].purpose
-//            if (departListArray[index].status == "отменен" || departListArray[index].status == "задержан") {
-//                viewBinding.tvStatus.setTextColor(ContextCompat.getColor(myContext!!,
-//                    android.R.color.holo_red_dark))
-//            } else {
-//                viewBinding.tvStatus.setTextColor(ContextCompat.getColor(myContext!!,
-//                    android.R.color.holo_green_dark))
-//            }
-//            viewBinding.tvStatus.text = departListArray[index].status
-//            viewBinding.tvAirplane.text = departListArray[index].airplane
-//            viewBinding.tvFlight.text = departListArray[index].flight
-//            viewBinding.tvCompany.text = departListArray[index].company
-//        }
+        fun bind(index: Int) {
+            viewBinding.tvPlanTime.text = filterDepartListArray[index].plan_time
+            viewBinding.tvFactTime.text = filterDepartListArray[index].fact_time
+            viewBinding.tvPurpose.text = filterDepartListArray[index].purpose
+            if (filterDepartListArray[index].status == "отменен" || filterDepartListArray[index].status == "задержан") {
+                viewBinding.tvStatus.setTextColor(ContextCompat.getColor(myContext!!,
+                    android.R.color.holo_red_dark))
+            } else {
+                viewBinding.tvStatus.setTextColor(ContextCompat.getColor(myContext!!,
+                    android.R.color.holo_green_dark))
+            }
+            viewBinding.tvStatus.text = filterDepartListArray[index].status
+            viewBinding.tvAirplane.text = filterDepartListArray[index].airplane
+            viewBinding.tvFlight.text = filterDepartListArray[index].flight
+            viewBinding.tvCompany.text = filterDepartListArray[index].company
+        }
     }
 }

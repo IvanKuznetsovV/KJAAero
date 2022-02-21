@@ -34,12 +34,12 @@ class DepartFragment(private val day: String) : Fragment(), SearchView.OnQueryTe
         userViewModel.day = day
 
         userViewModel.getAllDepart()
-        activity?.let{searchView = it.findViewById<SearchView>(R.id.search)}
+        activity?.let{searchView = it.findViewById(R.id.search)}
 
         progressBar.showNow(childFragmentManager, "load")
         userViewModel.allDepartFlight.observe(viewLifecycleOwner, Observer {
                 allDepartFlight -> adapter.setData(allDepartFlight)
-
+                adapter.filter.filter(searchView.query.toString())
             progressBar.dismiss()
         })
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -47,7 +47,6 @@ class DepartFragment(private val day: String) : Fragment(), SearchView.OnQueryTe
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 adapter.filter.filter(newText)
-                Log.d("MyLog", newText!! )
                 return true
             }
 

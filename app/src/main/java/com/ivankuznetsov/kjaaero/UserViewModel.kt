@@ -15,7 +15,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getAllArrival() {
         viewModelScope.launch(Dispatchers.IO) {
-            var repository = UserRepository(day)
+            val repository = UserRepository(day)
             val x = repository.getArrival()
             allArrivalFlight.postValue(x)
         }
@@ -23,7 +23,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
      fun getAllDepart(){
         viewModelScope.launch(Dispatchers.IO) {
-            var repository = UserRepository(day)
+            val repository = UserRepository(day)
             val x = repository.getDepart()
             allDepartFlight.postValue(x)
         }

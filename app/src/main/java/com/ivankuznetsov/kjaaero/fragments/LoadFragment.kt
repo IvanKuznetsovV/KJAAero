@@ -12,6 +12,7 @@ class LoadFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setStyle(STYLE_NO_INPUT,theme)
     }
 
     override fun onCreateView(
