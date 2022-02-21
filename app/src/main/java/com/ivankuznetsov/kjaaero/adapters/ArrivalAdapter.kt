@@ -1,6 +1,7 @@
 package com.ivankuznetsov.kjaaero.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ivankuznetsov.kjaaero.FlightData
 import com.ivankuznetsov.kjaaero.R
+import com.ivankuznetsov.kjaaero.activity.DetailActivity
 import com.ivankuznetsov.kjaaero.databinding.FlightItemBinding
 import java.util.*
 
@@ -84,6 +86,17 @@ class ArrivalAdapter(val myContext: Context?) : RecyclerView.Adapter<ArrivalAdap
             viewBinding.tvAirplane.text = filterArrivalListArray[index].airplane
             viewBinding.tvFlight.text = filterArrivalListArray[index].flight
             viewBinding.tvCompany.text = filterArrivalListArray[index].company
+            viewBinding.flightIt.setOnClickListener {
+                val intent = Intent(context, DetailActivity :: class.java)
+                intent.putExtra("tvPlanTime", filterArrivalListArray[index].plan_time)
+                intent.putExtra("tvFactTime", filterArrivalListArray[index].fact_time)
+                intent.putExtra("tvPurpose", filterArrivalListArray[index].purpose)
+                intent.putExtra("tvStatus", filterArrivalListArray[index].status)
+                intent.putExtra("tvAirplane", filterArrivalListArray[index].airplane)
+                intent.putExtra("tvFlight", filterArrivalListArray[index].flight)
+                intent.putExtra("tvCompany", filterArrivalListArray[index].company)
+                context.startActivity(intent)
+            }
         }
     }
 }

@@ -1,14 +1,17 @@
 package com.ivankuznetsov.kjaaero.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ivankuznetsov.kjaaero.FlightData
+import com.ivankuznetsov.kjaaero.activity.DetailActivity
 import com.ivankuznetsov.kjaaero.databinding.FlightItemBinding
 import java.util.*
 
@@ -80,6 +83,17 @@ class DepartAdapter(var myContext: Context?) : RecyclerView.Adapter<DepartAdapte
             viewBinding.tvAirplane.text = filterDepartListArray[index].airplane
             viewBinding.tvFlight.text = filterDepartListArray[index].flight
             viewBinding.tvCompany.text = filterDepartListArray[index].company
+            viewBinding.flightIt.setOnClickListener {
+                val intent = Intent(context,DetailActivity :: class.java)
+                intent.putExtra("tvPlanTime", filterDepartListArray[index].plan_time)
+                intent.putExtra("tvFactTime", filterDepartListArray[index].fact_time)
+                intent.putExtra("tvPurpose", filterDepartListArray[index].purpose)
+                intent.putExtra("tvStatus", filterDepartListArray[index].status)
+                intent.putExtra("tvAirplane", filterDepartListArray[index].airplane)
+                intent.putExtra("tvFlight", filterDepartListArray[index].flight)
+                intent.putExtra("tvCompany", filterDepartListArray[index].company)
+                context.startActivity(intent)
+            }
         }
     }
 }

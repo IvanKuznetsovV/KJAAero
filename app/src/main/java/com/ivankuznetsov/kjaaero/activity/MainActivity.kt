@@ -1,13 +1,10 @@
-package com.ivankuznetsov.kjaaero
+package com.ivankuznetsov.kjaaero.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.lifecycle.ViewModelProvider
+import com.ivankuznetsov.kjaaero.R
 import com.ivankuznetsov.kjaaero.databinding.ActivityMainBinding
 import com.ivankuznetsov.kjaaero.fragments.ArrivalFragment
 import com.ivankuznetsov.kjaaero.fragments.DepartFragment
