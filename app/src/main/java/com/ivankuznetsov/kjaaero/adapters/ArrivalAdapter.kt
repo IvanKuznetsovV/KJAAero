@@ -4,15 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ivankuznetsov.kjaaero.FlightData
-import com.ivankuznetsov.kjaaero.R
 import com.ivankuznetsov.kjaaero.activity.DetailActivity
 import com.ivankuznetsov.kjaaero.databinding.FlightItemBinding
 import java.util.*
@@ -38,8 +35,10 @@ class ArrivalAdapter(val myContext: Context?) : RecyclerView.Adapter<ArrivalAdap
                 }else{
                     val resultList = mutableListOf<FlightData>()
                     for (x in 0 until arrivalListArray.size) {
-                        if (arrivalListArray[x].company.lowercase(Locale.ROOT).contains(charSearch.lowercase(
-                                Locale.ROOT))) {
+                        if (arrivalListArray[x].company?.lowercase(Locale.ROOT)?.contains(charSearch.lowercase(Locale.ROOT))!! ||
+                            arrivalListArray[x].flight?.lowercase(Locale.ROOT)?.contains(charSearch.lowercase(Locale.ROOT))!! ||
+                            arrivalListArray[x].purpose?.lowercase(Locale.ROOT)?.contains(charSearch.lowercase(Locale.ROOT))!! ||
+                            arrivalListArray[x].plan_time?.lowercase(Locale.ROOT)?.contains(charSearch.lowercase(Locale.ROOT))== true) {
                             resultList.add(arrivalListArray[x])
                             Log.d("MyLog",arrivalListArray[x].company + x.toString())
                         }
@@ -88,13 +87,7 @@ class ArrivalAdapter(val myContext: Context?) : RecyclerView.Adapter<ArrivalAdap
             viewBinding.tvCompany.text = filterArrivalListArray[index].company
             viewBinding.flightIt.setOnClickListener {
                 val intent = Intent(context, DetailActivity :: class.java)
-                intent.putExtra("tvPlanTime", filterArrivalListArray[index].plan_time)
-                intent.putExtra("tvFactTime", filterArrivalListArray[index].fact_time)
-                intent.putExtra("tvPurpose", filterArrivalListArray[index].purpose)
-                intent.putExtra("tvStatus", filterArrivalListArray[index].status)
-                intent.putExtra("tvAirplane", filterArrivalListArray[index].airplane)
-                intent.putExtra("tvFlight", filterArrivalListArray[index].flight)
-                intent.putExtra("tvCompany", filterArrivalListArray[index].company)
+                intent.putExtra("flightData", filterArrivalListArray[index])
                 context.startActivity(intent)
             }
         }

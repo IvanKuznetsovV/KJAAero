@@ -1,9 +1,9 @@
 package com.ivankuznetsov.kjaaero
 
-import android.util.Log
 import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
+
 
 class UserRepository(var daysURL: String?) {
     private val yesterday = "KJA Красноярск Вчера"
@@ -18,41 +18,38 @@ class UserRepository(var daysURL: String?) {
     private val arrivalToday = "https://www.kja.aero/page-online-tablo/?type=2"
     private val arrivalTomorrow = "https://www.kja.aero/page-online-tablo/?type=2&day=3"
 
-    private fun getDepartDay(day: String?): String{
-        when(day){
-          yesterday ->  return departYesterday
-          today ->  return departToday
-          tomorrow -> return departTomorrow
+    private fun getDepartDay(day: String?): String =
+        when (day) {
+            yesterday -> departYesterday
+            today -> departToday
+            tomorrow -> departTomorrow
+            else -> departToday
         }
-        return departToday
-    }
 
-    private fun getArrivalDay(day: String?): String{
-        when(day){
-            yesterday -> return arrivalYesterday
-            today -> return arrivalToday
-            tomorrow -> return arrivalTomorrow
+    private fun getArrivalDay(day: String?): String =
+        when (day) {
+            yesterday -> arrivalYesterday
+            today -> arrivalToday
+            tomorrow -> arrivalTomorrow
+            else -> arrivalToday
         }
-        return arrivalToday
-    }
 
     fun getArrival() : MutableList<FlightData> {
         val listFlightData = mutableListOf<FlightData>()
-
-        val doc = Jsoup.connect(getArrivalDay(daysURL))
+         val doc = Jsoup.connect(getArrivalDay(daysURL))
               .userAgent("Mozilla/5.0 (X11; Linux x86_64)")
               .method(Connection.Method.GET)
               .timeout(15000)
+              .ignoreHttpErrors(true)
               .get()
           val elements: Elements = doc.select("div.departureboardBlock")
               .select("ul.boardList")
               .select("div.dataListBlock")
               .select("ul.dataList")
-
-        val elementsSecond: Elements = doc.select("div.departureboardBlock")
-            .select("ul.boardList")
-            .select("div.detailsBlock")
-            .select("ul.charList")
+          val elementsSecond: Elements = doc.select("div.departureboardBlock")
+              .select("ul.boardList")
+              .select("div.detailsBlock")
+              .select("ul.charList")
 
         for (x in 0 until elements.size) {
               val element = elements[x]
@@ -63,6 +60,8 @@ class UserRepository(var daysURL: String?) {
               val airplane = elementsSecond[x].child(3).select("li.item").select("span.value").text().toString()
               val flight = element.select("li.item-flight").select("span.value").text().toString()
               val company = elementsSecond[x].child(4).select("li.item").select("span.value").text().toString()
+              val purposeAD = elementsSecond[x].child(2).select("li.item").select("span.value").text().toString()
+              val phone = elementsSecond[x].child(5).select("li.item").select("span.value").text().toString()
 
               val flightData = FlightData(
                   planTime,
@@ -71,7 +70,9 @@ class UserRepository(var daysURL: String?) {
                   status,
                   airplane,
                   flight,
-                  company)
+                  company,
+                  purposeAD,
+                  phone )
               listFlightData.add(flightData)
           }
         return listFlightData
@@ -84,6 +85,7 @@ class UserRepository(var daysURL: String?) {
             .userAgent("Mozilla/5.0 (X11; Linux x86_64)")
             .method(Connection.Method.GET)
             .timeout(15000)
+            .ignoreHttpErrors(true)
             .get()
        val elementsFirst: Elements = doc.select("div.departureboardBlock")
            .select("ul.boardList")
@@ -104,14 +106,18 @@ class UserRepository(var daysURL: String?) {
                 val airplane = elementsSecond[x].child(3).select("li.item").select("span.value").text().toString()
                 val flight = element.select("li.item-flight").select("span.value").text().toString() + " " + element.select("li.item-flight").select("div.value").text().toString()
                 val company = elementsSecond[x].child(4).select("li.item").select("span.value").text().toString()
-                val flightData = FlightData(
+                val purposeAD = elementsSecond[x].child(2).select("li.item").select("span.value").text().toString()
+                val phone = elementsSecond[x].child(5).select("li.item").select("span.value").text().toString()
+           val flightData = FlightData(
                     planTime,
                     factTime,
                     purpose,
                     status,
                     airplane,
                     flight,
-                    company)
+                    company,
+                    purposeAD,
+                    phone)
                 listFlightData.add(flightData)
 
             }

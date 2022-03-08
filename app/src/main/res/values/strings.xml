@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">KJA Красноярск Сегодня</string>
-    <string name="today">KJA Красноярск Сегодня</string>
     <string name="yesterday">KJA Красноярск Вчера</string>
     <string name="tomorrow">KJA Красноярск Завтра</string>
     <string name="depart">вылет</string>
+    <string name="info">О Приложении</string>
+    <string name="info_message">Приложение не является официальным и является бесплатным.
+                                Источник данных для онлайн табло - www.kja.aero
+                                (Официальный сайт Аэропорта Красноярск).
+                                </string>
 </resources>

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ivankuznetsov.kjaaero.R
@@ -16,16 +15,12 @@ import com.ivankuznetsov.kjaaero.UserViewModel
 import com.ivankuznetsov.kjaaero.adapters.ArrivalAdapter
 import com.ivankuznetsov.kjaaero.databinding.FragmentArrivalBinding
 
-
-
-class ArrivalFragment(private val day: String) : Fragment(), SearchView.OnQueryTextListener{
-
-    private lateinit var binding : FragmentArrivalBinding
+class ArrivalFragment(private val day: String) : Fragment(){
     private var progressBar : DialogFragment = LoadFragment()
+    private lateinit var binding : FragmentArrivalBinding
     private lateinit var searchView: SearchView
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?, ): View {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View {
             binding = FragmentArrivalBinding.inflate(inflater)
             val adapter = ArrivalAdapter(context)
             val recyclerView = binding.arrivalRecycle
@@ -33,15 +28,17 @@ class ArrivalFragment(private val day: String) : Fragment(), SearchView.OnQueryT
             recyclerView.adapter = adapter
             val userViewModel = ViewModelProvider(this)[UserViewModel :: class.java]
             userViewModel.day = day
+            userViewModel.progressBar = progressBar
+            activity?.let{searchView = it.findViewById(R.id.search)}
 
             userViewModel.getAllArrival()
-            activity?.let{searchView = it.findViewById(R.id.search)}
-            progressBar.showNow(childFragmentManager, "load")
-            userViewModel.allArrivalFlight.observe(viewLifecycleOwner, Observer {
-                    allArrivalFlight -> adapter.setData(allArrivalFlight)
-                    adapter.filter.filter(searchView.query.toString())
-                    progressBar.dismiss()
-            })
+                progressBar.showNow(childFragmentManager, "load")
+                    userViewModel.allArrivalFlight.observe(viewLifecycleOwner,
+                        { allArrivalFlight ->
+                            adapter.setData(allArrivalFlight)
+                            adapter.filter.filter(searchView.query.toString())
+                            progressBar.dismiss()
+                        })
             searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean { return true }
 
@@ -52,14 +49,5 @@ class ArrivalFragment(private val day: String) : Fragment(), SearchView.OnQueryT
 
             })
         return binding.root
-
-        }
-
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
-    }
-
-    override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
     }
 }

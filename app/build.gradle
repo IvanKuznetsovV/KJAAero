@@ -3,14 +3,14 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
-
+apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.ivankuznetsov.kjaaero"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -59,6 +59,7 @@ dependencies {
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt"
 
