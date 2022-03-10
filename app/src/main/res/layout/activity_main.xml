@@ -17,13 +17,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/toolbar_menu"/>
 
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:iconifiedByDefault="false"
         app:queryHint="Поиск" />
-
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_holder"
         android:layout_width="match_parent"

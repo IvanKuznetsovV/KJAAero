@@ -8,4 +8,8 @@
                                 Источник данных для онлайн табло - www.kja.aero
                                 (Официальный сайт Аэропорта Красноярск).
                                 </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="connect_error">Ошибка подключения к серверу или интернету</string>
+    <string name="connect_check">Проверьте подключение</string>
+    <string name="connect_error_button">ОК</string>
 </resources>

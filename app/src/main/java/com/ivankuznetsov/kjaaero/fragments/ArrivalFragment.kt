@@ -27,8 +27,11 @@ class ArrivalFragment(private val day: String) : Fragment(){
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
             val userViewModel = ViewModelProvider(this)[UserViewModel :: class.java]
+
             userViewModel.day = day
             userViewModel.progressBar = progressBar
+            userViewModel.dialog = childFragmentManager
+
             activity?.let{searchView = it.findViewById(R.id.search)}
 
             userViewModel.getAllArrival()

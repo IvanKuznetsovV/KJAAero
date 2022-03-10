@@ -1,11 +1,18 @@
 package com.ivankuznetsov.kjaaero
 import android.app.Application
+import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ivankuznetsov.kjaaero.fragments.ConnectErrorFragment
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.jsoup.Jsoup
 
@@ -14,38 +21,35 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val allDepartFlight  = MutableLiveData<MutableList<FlightData>>()
     var day: String? = null
     var progressBar: DialogFragment? = null
-
-    private fun checkStatusCode(daysURL: String?): Boolean {
-        val response = Jsoup.connect(daysURL).followRedirects(false).execute()
-        return response.statusCode() == 200
-    }
+    var dialog:FragmentManager? = null
+    val dialogConnectError = ConnectErrorFragment()
 
     private suspend fun message(){
         viewModelScope.launch(Dispatchers.Main) {
             progressBar?.dismiss()
-            Toast.makeText(getApplication(), "NO CONNECT", Toast.LENGTH_LONG).show()
+            dialogConnectError.show(dialog!!, "dialogConnectError")
         }.join()
     }
 
     fun getAllArrival() {
          viewModelScope.launch(Dispatchers.IO) {
-             if(NetworkManger.checkConnect(getApplication()) && checkStatusCode("https://www.kja.aero") ) {
-                 val repository = UserRepository(day)
-                 val x = repository.getArrival()
-                 allArrivalFlight.postValue(x)
-             }
-             else message()
+                 try {
+                     val repository = UserRepository(day)
+                     val x = repository.getArrival()
+                     allArrivalFlight.postValue(x)
+                 }
+                 catch (e: Exception){message()}
          }
     }
 
      fun getAllDepart(){
-        viewModelScope.launch(Dispatchers.IO) {
-            if(NetworkManger.checkConnect(getApplication()) && checkStatusCode("https://www.kja.aero")) {
-                val repository = UserRepository(day)
-                val x = repository.getDepart()
-                allDepartFlight.postValue(x)
-            }
-            else message()
-        }
+         viewModelScope.launch(Dispatchers.IO) {
+                 try {
+                     val repository = UserRepository(day)
+                     val x = repository.getDepart()
+                     allDepartFlight.postValue(x)
+                 }
+                 catch (e: Exception){message()}
+         }
      }
 }

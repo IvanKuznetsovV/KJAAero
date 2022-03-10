@@ -4,7 +4,6 @@ import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 
-
 class UserRepository(var daysURL: String?) {
     private val yesterday = "KJA Красноярск Вчера"
     private val today = "KJA Красноярск Сегодня"
@@ -40,7 +39,6 @@ class UserRepository(var daysURL: String?) {
               .userAgent("Mozilla/5.0 (X11; Linux x86_64)")
               .method(Connection.Method.GET)
               .timeout(15000)
-              .ignoreHttpErrors(true)
               .get()
           val elements: Elements = doc.select("div.departureboardBlock")
               .select("ul.boardList")
@@ -85,7 +83,6 @@ class UserRepository(var daysURL: String?) {
             .userAgent("Mozilla/5.0 (X11; Linux x86_64)")
             .method(Connection.Method.GET)
             .timeout(15000)
-            .ignoreHttpErrors(true)
             .get()
        val elementsFirst: Elements = doc.select("div.departureboardBlock")
            .select("ul.boardList")
