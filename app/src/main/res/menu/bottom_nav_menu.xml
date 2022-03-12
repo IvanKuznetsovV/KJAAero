@@ -4,14 +4,14 @@
         android:id="@+id/depart"
         android:icon="@drawable/ic_baseline_flight_takeoff_24"
         android:orderInCategory="1"
-        android:title="Вылет">
+        android:title="@string/depart">
     </item>
 
     <item
         android:id="@+id/arrival"
         android:icon="@drawable/ic_baseline_flight_land_24"
         android:orderInCategory="2"
-        android:title="Прилёт">
+        android:title="@string/arrival">
     </item>
 
 </menu>

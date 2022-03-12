@@ -15,4 +15,9 @@
         <item name="android:statusBarColor" >#0A2888</item>
         <item name="android:windowBackground">@drawable/background_gradient</item>
     </style>
+
+    <style name="DialogStyle" >
+
+        <item name="android:background">@drawable/flight_item_shape</item>
+    </style>
 </resources>

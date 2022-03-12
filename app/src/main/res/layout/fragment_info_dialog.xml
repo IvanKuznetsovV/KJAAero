@@ -11,31 +11,22 @@
         android:layout_height="70dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:src="@drawable/ic_baseline_signal_wifi_off_24"/>
+        android:src="@drawable/ic_baseline_info_24"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:textColor="@color/white"
-        android:text="@string/connect_check"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:layout_margin="10dp"
-        android:textColor="@color/white"
-        android:text="@string/connect_error" />
 
+        android:text="@string/info_message" />
     <Button
         android:id="@+id/button_ok"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:layout_gravity="center"
         android:text="@string/connect_error_button"
         android:background="@drawable/flight_item_shape"/>

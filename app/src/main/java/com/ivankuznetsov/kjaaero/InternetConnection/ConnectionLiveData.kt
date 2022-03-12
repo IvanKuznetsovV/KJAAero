@@ -21,7 +21,6 @@ class ConnectionLiveData(context: Context) : MutableLiveData<Boolean>() {
     private fun checkValidNetworks() {
         postValue(validNetworks.size > 0)
     }
-
     override fun onActive() {
         networkCallback = createNetworkCallback()
         val networkRequest = NetworkRequest.Builder()
