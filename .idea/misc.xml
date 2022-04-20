@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/drawable/background_gradient.xml" value="0.1905" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/drawable/border.xml" value="0.1905" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/drawable/check_internet_dialog.xml" value="0.108" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.1905" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/layout/activity_detail.xml" value="0.1" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/layout/fragment_arrival.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/layout/fragment_depart.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/layout/fragment_detail_info_dialog.xml" value="0.1796875" />
+        <entry key="..\:/Users/Kuzne/AndroidStudioProjects/KJAAero/app/src/main/res/layout/fragment_load.xml" value="0.17831813576494426" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

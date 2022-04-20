@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/departFragment">
+
+    <fragment
+        android:id="@+id/departFragment"
+        android:name="com.ivankuznetsov.kjaaero.fragments.DepartFragment"
+        android:label="fragment_depart"
+        tools:layout="@layout/fragment_depart" >
+        <action
+            android:id="@+id/navigateToArrivalFragment"
+            app:destination="@id/arrivalFragment" />
+        <action
+            android:id="@+id/action_departFragment_to_detailInfoDialogFragment"
+            app:destination="@id/detailInfoDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/arrivalFragment"
+        android:name="com.ivankuznetsov.kjaaero.fragments.ArrivalFragment"
+        android:label="fragment_arrival"
+        tools:layout="@layout/fragment_arrival" >
+        <action
+            android:id="@+id/navigateToDepartFragment"
+            app:destination="@id/departFragment" />
+        <action
+            android:id="@+id/action_arrivalFragment_to_detailInfoDialogFragment"
+            app:destination="@id/detailInfoDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/detailInfoDialogFragment"
+        android:name="com.ivankuznetsov.kjaaero.fragments.DetailInfoDialogFragment"
+        android:label="DetailInfoDialogFragment" />
+</navigation>

@@ -1,8 +1,7 @@
-package com.ivankuznetsov.kjaaero.adapters
+package com.ivankuznetsov.kjaaero.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -10,15 +9,15 @@ import android.widget.Filterable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ivankuznetsov.kjaaero.FlightData
-import com.ivankuznetsov.kjaaero.activity.DetailActivity
-
 import com.ivankuznetsov.kjaaero.databinding.FlightItemBinding
-import java.util.*
+import com.ivankuznetsov.kjaaero.detailInfo
 
+@SuppressLint("NotifyDataSetChanged")
 class ArrivalDepartAdapter: RecyclerView.Adapter<ArrivalDepartAdapter.ArrivalDepartViewHolder>(),
     Filterable {
     private var originalADListArray = mutableListOf<FlightData>()
     private var filterADListArray = mutableListOf<FlightData>()
+    lateinit var dialog: detailInfo
 
     fun setData(ADList: MutableList<FlightData>) {
         originalADListArray = ADList
@@ -68,10 +67,10 @@ class ArrivalDepartAdapter: RecyclerView.Adapter<ArrivalDepartAdapter.ArrivalDep
             viewBinding.tvFlight.text = filterADListArray[index].flight
             viewBinding.tvCompany.text = filterADListArray[index].company
             viewBinding.flightIt.setOnClickListener {
-                val intent = Intent(context, DetailActivity :: class.java)
-                intent.putExtra("flightData", filterADListArray[index])
-                context.startActivity(intent)
+                dialog = context as detailInfo
+                dialog.detailInfo()
             }
         }
+
     }
 }

@@ -4,38 +4,13 @@ import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.select.Elements
 
-class UserRepository(var daysURL: String?) {
-    private val yesterday = "KJA Красноярск Вчера"
-    private val today = "KJA Красноярск Сегодня"
-    private val tomorrow = "KJA Красноярск Завтра"
+class KJARepository(var daysURL: Int?) {
 
-    private val departYesterday = "https://www.kja.aero/page-online-tablo/?day=2"
-    private val departToday = "https://www.kja.aero/page-online-tablo/"
-    private val departTomorrow = "https://www.kja.aero/page-online-tablo/?day=3"
-
-    private val arrivalYesterday = "https://www.kja.aero/page-online-tablo/?day=2&type=2"
-    private val arrivalToday = "https://www.kja.aero/page-online-tablo/?type=2"
-    private val arrivalTomorrow = "https://www.kja.aero/page-online-tablo/?type=2&day=3"
-
-    private fun getDepartDay(day: String?): String =
-        when (day) {
-            yesterday -> departYesterday
-            today -> departToday
-            tomorrow -> departTomorrow
-            else -> departToday
-        }
-
-    private fun getArrivalDay(day: String?): String =
-        when (day) {
-            yesterday -> arrivalYesterday
-            today -> arrivalToday
-            tomorrow -> arrivalTomorrow
-            else -> arrivalToday
-        }
+    private val urLs: URLs = URLs()
 
     fun getArrival() : MutableList<FlightData> {
         val listFlightData = mutableListOf<FlightData>()
-         val doc = Jsoup.connect(getArrivalDay(daysURL))
+         val doc = Jsoup.connect(urLs.getArrivalDay(daysURL))
               .userAgent("Mozilla/5.0 (X11; Linux x86_64)")
               .method(Connection.Method.GET)
               .timeout(15000)
@@ -59,7 +34,6 @@ class UserRepository(var daysURL: String?) {
               val flight = element.select("li.item-flight").select("span.value").text().toString()
               val company = elementsSecond[x].child(4).select("li.item").select("span.value").text().toString()
               val purposeAD = elementsSecond[x].child(2).select("li.item").select("span.value").text().toString()
-              val phone = elementsSecond[x].child(5).select("li.item").select("span.value").text().toString()
 
               val flightData = FlightData(
                   planTime,
@@ -70,7 +44,7 @@ class UserRepository(var daysURL: String?) {
                   flight,
                   company,
                   purposeAD,
-                  phone )
+              )
               listFlightData.add(flightData)
           }
         return listFlightData
@@ -79,7 +53,7 @@ class UserRepository(var daysURL: String?) {
    fun getDepart() : MutableList<FlightData>{
         val listFlightData = mutableListOf<FlightData>()
 
-        val doc = Jsoup.connect(getDepartDay(daysURL))
+        val doc = Jsoup.connect(urLs.getDepartDay(daysURL))
             .userAgent("Mozilla/5.0 (X11; Linux x86_64)")
             .method(Connection.Method.GET)
             .timeout(15000)
@@ -104,7 +78,7 @@ class UserRepository(var daysURL: String?) {
                 val flight = element.select("li.item-flight").select("span.value").text().toString() + " " + element.select("li.item-flight").select("div.value").text().toString()
                 val company = elementsSecond[x].child(4).select("li.item").select("span.value").text().toString()
                 val purposeAD = elementsSecond[x].child(2).select("li.item").select("span.value").text().toString()
-                val phone = elementsSecond[x].child(5).select("li.item").select("span.value").text().toString()
+
            val flightData = FlightData(
                     planTime,
                     factTime,
@@ -114,7 +88,7 @@ class UserRepository(var daysURL: String?) {
                     flight,
                     company,
                     purposeAD,
-                    phone)
+           )
                 listFlightData.add(flightData)
 
             }

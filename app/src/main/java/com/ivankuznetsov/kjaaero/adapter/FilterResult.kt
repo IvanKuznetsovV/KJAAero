@@ -1,4 +1,4 @@
-package com.ivankuznetsov.kjaaero.adapters
+package com.ivankuznetsov.kjaaero.adapter
 
 import com.ivankuznetsov.kjaaero.FlightData
 import java.util.*

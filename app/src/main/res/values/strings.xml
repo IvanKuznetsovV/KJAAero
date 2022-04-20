@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">KJA Красноярск Сегодня</string>
-    <string name="yesterday">KJA Красноярск Вчера</string>
-    <string name="tomorrow">KJA Красноярск Завтра</string>
+    <string name="app_name">KJA Сегодня</string>
+    <string name="yesterday">KJA Вчера</string>
+    <string name="tomorrow">KJA Завтра</string>
     <string name="depart">Вылет</string>
     <string name="arrival">Прилет</string>
     <string name="info">О Приложении</string>
@@ -13,5 +13,8 @@
     <string name="connect_error">Ошибка подключения к серверу или интернету</string>
     <string name="connect_check">Проверьте подключение</string>
     <string name="connect_error_button">ОК</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

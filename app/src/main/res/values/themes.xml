@@ -8,12 +8,18 @@
         <item name="colorSecondary">@color/ic_launcher_background</item>
         <item name="colorSecondaryVariant">@color/ic_launcher_background</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor" >#0A2888</item>
+        <item name="android:statusBarColor" >#9DA8CA</item>
 
     </style>
     <style name="Theme.SplashScreen" parent="Theme.Design.NoActionBar">
-        <item name="android:statusBarColor" >#0A2888</item>
+        <item name="android:statusBarColor" >#9DA8CA</item>
         <item name="android:windowBackground">@drawable/background_gradient</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">#33FFFFFF</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/ic_launcher_background</item>
+        <item name="colorSecondaryVariant">@color/ic_launcher_background</item>
+        <item name="colorOnSecondary">@color/black</item>
     </style>
 
     <style name="DialogStyle" >

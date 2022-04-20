@@ -13,7 +13,7 @@ data class FlightData(
     val flight: String?,
     val company: String?,
     val purposeAD: String?,
-    val phone: String?
+
 ): Parcelable
 
 

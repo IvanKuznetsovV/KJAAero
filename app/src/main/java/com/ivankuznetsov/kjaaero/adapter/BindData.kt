@@ -1,10 +1,8 @@
-package com.ivankuznetsov.kjaaero.adapters
+package com.ivankuznetsov.kjaaero.adapter
 
 import android.content.Context
-import android.content.Intent
 import androidx.core.content.ContextCompat
 import com.ivankuznetsov.kjaaero.FlightData
-import com.ivankuznetsov.kjaaero.activity.DetailActivity
 import com.ivankuznetsov.kjaaero.databinding.FlightItemBinding
 
 object BindData {
@@ -24,9 +22,7 @@ object BindData {
         viewBinding.tvFlight.text = filterADList[index].flight
         viewBinding.tvCompany.text = filterADList[index].company
         viewBinding.flightIt.setOnClickListener {
-            val intent = Intent(context, DetailActivity :: class.java)
-            intent.putExtra("flightData", filterADList[index])
-            context.startActivity(intent)
+
         }
     }
 }

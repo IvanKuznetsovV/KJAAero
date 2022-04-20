@@ -19,7 +19,7 @@
         android:textStyle="bold"
         android:textSize="15sp"
         android:layout_margin="10dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="@string/connect_check"/>
     <TextView
         android:layout_width="wrap_content"
@@ -28,9 +28,8 @@
         android:textStyle="bold"
         android:textSize="12sp"
         android:layout_margin="10dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:text="@string/connect_error" />
-
     <Button
         android:id="@+id/button_ok"
         android:layout_width="300dp"
@@ -38,5 +37,6 @@
         android:layout_margin="10dp"
         android:layout_gravity="center"
         android:text="@string/connect_error_button"
+        android:textColor="@color/black"
         android:background="@drawable/flight_item_shape"/>
 </LinearLayout>

@@ -8,33 +8,33 @@
     android:background="@drawable/background_gradient"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#0A2888"
+        android:background="#000A2888"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/toolbar_menu"/>
-
-
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
         app:iconifiedByDefault="false"
+        android:layout_margin="3dp"
+        android:background="@drawable/flight_item_shape"
         app:queryHint="Поиск по рейсу, городу и компании"/>
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_holder"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
-
+        android:layout_weight="1"
+        app:navGraph="@navigation/nav_graph" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#D1D9F3"
+        android:background="#FFFFFF"
         app:itemIconTint="@drawable/bottom_nav_selector"
         app:itemTextColor="@drawable/bottom_nav_selector"
         app:menu="@menu/bottom_nav_menu"/>

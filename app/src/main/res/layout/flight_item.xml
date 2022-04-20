@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/flight_it"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:layout_margin="2dp"
+    android:layout_margin="3dp"
     android:background="@drawable/flight_item_shape">
 
     <LinearLayout
@@ -19,23 +18,25 @@
             android:id="@+id/tv_plan_time"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:textSize="18sp"
             android:textColor="@color/black">
         </TextView>
+
         <TextView
             android:id="@+id/tv_fact_time"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:textSize="16sp"
             android:textColor="@color/black">
         </TextView>
+
         <TextView
             android:id="@+id/tv_airplane"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:textColor="@color/black">
         </TextView>
 
@@ -50,22 +51,24 @@
             android:id="@+id/tv_purpose"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:textSize="18sp"
             android:textColor="@color/black">
         </TextView>
+
         <TextView
             android:id="@+id/tv_status"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:textSize="16sp">
         </TextView>
+
         <TextView
             android:id="@+id/tv_company"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_margin="5dp"
+            android:layout_margin="1dp"
             android:textColor="@color/black">
         </TextView>
 
@@ -80,13 +83,11 @@
         <TextView
             android:id="@+id/tv_flight"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:textSize="18sp"
             android:textColor="@color/black">
         </TextView>
 
     </LinearLayout>
-
-
 </LinearLayout>
