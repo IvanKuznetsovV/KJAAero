@@ -8,19 +8,29 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ivankuznetsov.kjaaero.R
 import com.ivankuznetsov.kjaaero.databinding.ActivityMainBinding
-import com.ivankuznetsov.kjaaero.detailInfo
+import com.ivankuznetsov.kjaaero.InternetConnection.ConnectivityManager
 
-class MainActivity : AppCompatActivity(), detailInfo {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var connectivityManager: ConnectivityManager
+
+    override fun onStart() {
+        super.onStart()
+        connectivityManager.registerConnectionObserver(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?)  {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
             val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_holder) as NavHostFragment
             val navView: BottomNavigationView = binding.bottomNav
             val toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
+
+            connectivityManager = ConnectivityManager(this, binding.root)
+
             navController = navHostFragment.navController
             navView.setupWithNavController(navController)
             setSupportActionBar(toolbar)
@@ -33,5 +43,11 @@ class MainActivity : AppCompatActivity(), detailInfo {
             true
         }
     }
-    override fun detailInfo() = navController.navigate(R.id.detailInfoDialogFragment)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        connectivityManager.unregisterConnectionObserver(this)
+    }
+
+
 }

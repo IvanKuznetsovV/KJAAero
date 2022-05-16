@@ -3,22 +3,22 @@ package com.ivankuznetsov.kjaaero.fragments
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.DialogFragment
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ivankuznetsov.kjaaero.ArrivalFragmentViewModel
-import com.ivankuznetsov.kjaaero.DepartFragmentViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.ivankuznetsov.kjaaero.R
+import com.ivankuznetsov.kjaaero.ViewModel.FragmentViewModel
 import com.ivankuznetsov.kjaaero.adapter.ArrivalDepartAdapter
 import com.ivankuznetsov.kjaaero.databinding.FragmentArrivalBinding
 
-class ArrivalFragment: BaseFragment<FragmentArrivalBinding, ArrivalFragmentViewModel>() {
+class ArrivalFragment: BaseFragment<FragmentArrivalBinding, FragmentViewModel>() {
 
     private lateinit var searchView: SearchView
 
     override fun initBinding(inflater: LayoutInflater) = FragmentArrivalBinding.inflate(inflater)
     override fun getAllArrivalDepart(d: Int) { vModel.getAllArrival(d) }
-    override fun initViewModel() = ViewModelProvider(this)[ArrivalFragmentViewModel :: class.java]
+    override fun initViewModel() = ViewModelProvider(this)[FragmentViewModel :: class.java]
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,8 +28,11 @@ class ArrivalFragment: BaseFragment<FragmentArrivalBinding, ArrivalFragmentViewM
         recyclerView.adapter = adapter
 
         activity?.let{searchView = it.findViewById(R.id.search)}
+        vModel.errorMessageLiveData.observe(viewLifecycleOwner) {
+            Snackbar.make(binding.root, R.string.connect_error, Snackbar.LENGTH_SHORT).show()
 
-
+        }
+        vModel.progressLiveData.observe(viewLifecycleOwner) { progress -> binding.arrivalSearchProgress.isVisible = progress }
         vModel.allArrivalFlight.observe(viewLifecycleOwner) { allArrivalFlight ->
             adapter.setData(allArrivalFlight)
             adapter.filter.filter(searchView.query.toString())

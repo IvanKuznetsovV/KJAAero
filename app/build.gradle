@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
 }
 apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
@@ -42,7 +43,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.30"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.preference:preference-ktx:1.2.0'
@@ -56,17 +57,17 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation "androidx.compose.runtime:runtime-livedata:1.1.1"
     // Kotlin
-    implementation("androidx.navigation:navigation-fragment-ktx:2.4.1")
-    implementation("androidx.navigation:navigation-ui-ktx:2.4.1")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.2")
     // Feature module Support
-    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.4.1")
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:2.4.2")
     // Testing Navigation
-    androidTestImplementation("androidx.navigation:navigation-testing:2.4.1")
+    androidTestImplementation("androidx.navigation:navigation-testing:2.4.2")
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
 
     //DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
